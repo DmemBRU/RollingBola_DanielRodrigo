@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class bola : MonoBehaviour
@@ -11,6 +12,8 @@ public class bola : MonoBehaviour
     Vector3 direccion;
     [SerializeField] int fuerza;
     [SerializeField] int vida;
+    private int puntuacion;
+    [SerializeField]TMP_Text textoPuntuacion;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +43,8 @@ public class bola : MonoBehaviour
         if(other.gameObject.tag == "coleccionable")
         {
             Destroy(other.gameObject);
+            puntuacion++;
+            textoPuntuacion.SetText("Score: " + puntuacion);
         }
         if(other.gameObject.CompareTag("trampa"))
         {
