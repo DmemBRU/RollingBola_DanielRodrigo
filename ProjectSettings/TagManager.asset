@@ -6,6 +6,7 @@ TagManager:
   tags:
   - coleccionable
   - trampa
+  - cambioCamara
   layers:
   - Default
   - TransparentFX

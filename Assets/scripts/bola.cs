@@ -55,5 +55,6 @@ public class bola : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        
     }
 }
