@@ -14,6 +14,9 @@ public class bola : MonoBehaviour
     [SerializeField] int vida;
     private int puntuacion;
     [SerializeField]TMP_Text textoPuntuacion;
+    [SerializeField] AudioClip sonidoColeccionable;
+    [SerializeField] AudioClip sonidoMuerte;
+    [SerializeField] AudioManager manager;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +45,7 @@ public class bola : MonoBehaviour
     {
         if(other.gameObject.tag == "coleccionable")
         {
+            manager.reproducirSonido(sonidoColeccionable);
             Destroy(other.gameObject);
             puntuacion++;
             textoPuntuacion.SetText("Score: " + puntuacion);
@@ -53,6 +57,7 @@ public class bola : MonoBehaviour
         }
         if (vida <= 0)
         {
+            manager.reproducirSonido(sonidoMuerte);
             Destroy(this.gameObject);
         }
         
