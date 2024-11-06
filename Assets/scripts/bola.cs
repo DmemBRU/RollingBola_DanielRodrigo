@@ -17,10 +17,12 @@ public class bola : MonoBehaviour
     [SerializeField] AudioClip sonidoColeccionable;
     [SerializeField] AudioClip sonidoMuerte;
     [SerializeField] AudioManager manager;
+    private Camera cam;
     // Start is called before the first frame update
     void Start()
     {
-       rb =GetComponent<Rigidbody>(); 
+       rb =GetComponent<Rigidbody>();
+        cam = Camera.main;
     }
 
     // Update is called once per frame
