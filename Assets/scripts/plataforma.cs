@@ -5,7 +5,7 @@ using UnityEngine;
 public class plataforma : MonoBehaviour
 {
     [SerializeField] Vector3 direccion;
-    [SerializeField] int velocidad;
+    [SerializeField] float velocidad;
     float temporizador = 0;
     // Start is called before the first frame update
     void Start()

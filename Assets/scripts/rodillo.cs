@@ -6,7 +6,7 @@ public class rodillo : MonoBehaviour
 {
     
     [SerializeField] Vector3 rotacion;
-    [SerializeField] int fuerza;
+    [SerializeField] float fuerza;
 
     Rigidbody rb;
     // Start is called before the first frame update
