@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class bola : MonoBehaviour
 {
 
-    
+     Vector3 posicionOriginal ;
     Rigidbody rb;
     [SerializeField] int velocidad;
     [SerializeField]Vector3 direccionSalto;
@@ -15,7 +16,7 @@ public class bola : MonoBehaviour
     [SerializeField] int fuerza;
     [SerializeField] int vida;
     [SerializeField] TMP_Text textoVida;
-    private int puntuacion;
+    [SerializeField]int puntuacion;
     [SerializeField]TMP_Text textoPuntuacion;
     [SerializeField] AudioClip sonidoColeccionable;
     [SerializeField] AudioClip sonidoMuerte;
@@ -24,6 +25,7 @@ public class bola : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        posicionOriginal = transform.position;
        rb =GetComponent<Rigidbody>();
         cam = Camera.main;
         textoPuntuacion.SetText("Puntos: " + puntuacion);
@@ -46,21 +48,18 @@ public class bola : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(direccionSalto * fuerzasalto, ForceMode.Impulse);
         }
         //Existe el FixedUpdate que es un ciclo de fisicas el cual es constante se reproduce cada 0.02 segundos SIEMPRE
-        if (vida <= 0)
-        {
-            manager.reproducirSonido(sonidoMuerte);
-            Destroy(this.gameObject);
-        }
+       
 
     }
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "coleccionable")
         {
-            Destroy(other.gameObject);
-            manager.reproducirSonido(sonidoColeccionable);
-            
             puntuacion++;
+            Destroy(other.gameObject);
+            //manager.reproducirSonido(sonidoColeccionable);
+            
+            
             textoPuntuacion.SetText("Score: " + puntuacion);
         }
         if(other.gameObject.CompareTag("trampa"))
@@ -71,9 +70,14 @@ public class bola : MonoBehaviour
         }
         if (vida <= 0)
         {
-            manager.reproducirSonido(sonidoMuerte);
+            //manager.reproducirSonido(sonidoMuerte);
             Destroy(this.gameObject);
         }
-        
+
+        if (other.gameObject.CompareTag("zonaMuerte"))
+        {
+            Destroy(this.gameObject);
+            
+        }
     }
 }

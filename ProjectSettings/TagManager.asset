@@ -7,6 +7,7 @@ TagManager:
   - coleccionable
   - trampa
   - cambioCamara
+  - zonaMuerte
   layers:
   - Default
   - TransparentFX
