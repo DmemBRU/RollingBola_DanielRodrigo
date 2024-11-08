@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class bola : MonoBehaviour
 {
@@ -22,6 +24,9 @@ public class bola : MonoBehaviour
     [SerializeField] AudioClip sonidoMuerte;
     [SerializeField] AudioManager manager;
     private Camera cam;
+
+    [SerializeField] LayerMask queEsSuelo;
+    [SerializeField] float distanciaDeteccionSuelo;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,10 +50,15 @@ public class bola : MonoBehaviour
         rb.AddForce(direccion.normalized * fuerza, ForceMode.Force);
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GetComponent<Rigidbody>().AddForce(direccionSalto * fuerzasalto, ForceMode.Impulse);
+            if (detectarSuelo() == true)
+            {
+                GetComponent<Rigidbody>().AddForce(direccionSalto * fuerzasalto, ForceMode.Impulse);
+            }
+           
         }
         //Existe el FixedUpdate que es un ciclo de fisicas el cual es constante se reproduce cada 0.02 segundos SIEMPRE
        
+        
 
     }
     private void OnTriggerEnter(Collider other)
@@ -72,12 +82,19 @@ public class bola : MonoBehaviour
         {
             //manager.reproducirSonido(sonidoMuerte);
             Destroy(this.gameObject);
+            SceneManager.LoadScene(2);
         }
 
         if (other.gameObject.CompareTag("zonaMuerte"))
         {
             Destroy(this.gameObject);
-            
+            SceneManager.LoadScene(2);
         }
+    }
+
+    bool detectarSuelo()
+    {
+        bool resultado = Physics.Raycast(transform.position, new Vector3(0, -1, 0), distanciaDeteccionSuelo, queEsSuelo);
+        return resultado;
     }
 }
