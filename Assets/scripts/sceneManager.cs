@@ -19,6 +19,7 @@ public class sceneManager : MonoBehaviour
     public void EmpezarPartida()
     {
         SceneManager.LoadScene(1);
+        
     }
     public void salirJuego()
     {
