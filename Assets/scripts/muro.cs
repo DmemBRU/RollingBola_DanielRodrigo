@@ -19,7 +19,9 @@ public class muro : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Time.timeScale = -1.0f;
+            Time.timeScale = 0.5f;
+
+            
         }
     }
 }

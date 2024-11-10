@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/muerte.unity
     guid: 94c1afb78348cdb48a94fbd0e8ca6348
+  - enabled: 1
+    path: Assets/Scenes/ganaste.unity
+    guid: fbaa79a83e58dd24782bd2a4ba54deb3
   m_configObjects: {}

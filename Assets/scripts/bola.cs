@@ -33,8 +33,8 @@ public class bola : MonoBehaviour
         posicionOriginal = transform.position;
        rb =GetComponent<Rigidbody>();
         cam = Camera.main;
-        textoPuntuacion.SetText("Puntos: " + puntuacion);
-        textoVida.SetText("Vida: " + vida);
+        textoPuntuacion.SetText("Puntos " + puntuacion);
+        textoVida.SetText("Vida " + vida);
 
     }
 
@@ -89,6 +89,13 @@ public class bola : MonoBehaviour
         {
             Destroy(this.gameObject);
             SceneManager.LoadScene(2);
+        }
+
+         if (other.gameObject.CompareTag("batman"))
+        {
+            Destroy(this.gameObject);
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(3);
         }
     }
 
